@@ -45,4 +45,22 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($exception instanceof MissingScopeException) {
+            return eRes('Oops! You are not allowed for this action!', 403);
+        }
+
+        if ($exception instanceof AuthenticationException) {
+            return eRes('Unauthorized', 401);
+        }
+
+        return res([
+            'type' => get_class($exception),
+            'message' => $exception->getMessage(),
+            'file' => $exception->getFile(),
+            'line' => $exception->getLine(),
+        ], 'Server Error', 500);
+    }
 }
