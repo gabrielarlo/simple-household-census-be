@@ -12,6 +12,7 @@
 - run `cd ./simple-household-census-be`
 - run `composer install`
 - copy the `.env.example`file as `.env`
+- run `touch database/database.sqlite`
 - run `php artisan migrate:fresh --seed`
 - run `php artisan serve` to serve this backend
 - Then run the frontend side of the app
