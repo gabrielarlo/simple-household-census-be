@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Mail\SendOtp;
-use App\Models\OauthAccessToken;
 use App\Models\PersonalAccessToken;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -48,7 +47,7 @@ class AuthController extends Controller
     public function requestNewPassword(Request $request): JsonResponse
     {
         $v = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users,email'
+            'email' => 'required|email|exists:users,email',
         ]);
         if ($v->fails()) {
             return vRes($v);

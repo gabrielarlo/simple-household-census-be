@@ -25,8 +25,6 @@ Route::prefix('auth')->group(function () {
     Route::post('set-new-password', [AuthController::class, 'setNewPassword']);
 });
 
-
-
 Route::get('phpinfo', function () {
     return phpinfo();
 });
