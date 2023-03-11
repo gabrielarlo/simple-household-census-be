@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\RoleEnum;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -18,6 +19,7 @@ class UserSeeder extends Seeder
             'name' => fake()->name(),
             'password' => 'secret@1234',
             'email_verified_at' => now(),
+            'role' => RoleEnum::ADMIN()->value,
         ]);
     }
 }
