@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\HouseholdController;
 use App\Http\Controllers\API\HouseholdMemberController;
+use App\Http\Controllers\API\StatsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('add', [HouseholdMemberController::class, 'add']);
         Route::post('update', [HouseholdMemberController::class, 'update']);
         Route::post('delete', [HouseholdMemberController::class, 'delete']);
+    });
+
+    Route::prefix('stats')->group(function () {
+        Route::get('counts', [StatsController::class, 'counts']);
+        Route::post('filter', [StatsController::class, 'filter']);
     });
 });
 

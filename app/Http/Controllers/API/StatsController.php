@@ -21,7 +21,7 @@ class StatsController extends Controller
         return res(compact('seniors', 'pwds', 'solo_parents'));
     }
 
-    public function filter(Request $request)
+    public function filter(Request $request): JsonResponse
     {
         $search = $request->search ?? '';
 
@@ -33,13 +33,13 @@ class StatsController extends Controller
         }
 
         $q = HouseholdMember::whereLike(['first_name', 'middle_name', 'last_name'], $search);
-        if ($request->category->equals(CategoryEnum::SENIOR())) {
+        if ($request->category == CategoryEnum::SENIOR()) {
             $hm = $q->get()->filter(function ($value) {
                 return $value->age() >= 60;
             });
-        } elseif ($request->category->equals(CategoryEnum::PWD())) {
+        } elseif ($request->category == CategoryEnum::PWD()) {
             $hm = $q->where('is_pwd', true)->get();
-        } elseif ($request->category->equals(CategoryEnum::SOLO())) {
+        } elseif ($request->category == CategoryEnum::SOLO()) {
             $hm = $q->where('is_solo_parent', true)->get();
         } else {
             return eRes('Invalid category!');
