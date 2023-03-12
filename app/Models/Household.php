@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Household extends Model
 {
@@ -24,6 +25,7 @@ class Household extends Model
 
     protected $appends = [
         'conducted_by',
+        'hashid',
     ];
 
     public function conductedBy(): BelongsTo
@@ -34,5 +36,10 @@ class Household extends Model
     public function getConductedByAttribute()
     {
         return User::find($this->attributes['conducted_by_id']);
+    }
+
+    public function getHashidAttribute(): string
+    {
+        return Hashids::encode($this->attributes['id']);
     }
 }

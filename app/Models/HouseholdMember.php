@@ -41,6 +41,7 @@ class HouseholdMember extends Model
         'is_senior',
         'household',
         'age',
+        'name',
     ];
 
     public function household(): BelongsTo
@@ -69,5 +70,10 @@ class HouseholdMember extends Model
     public function getIsSeniorAttribute(): bool
     {
         return $this->age() >= 60;
+    }
+
+    public function getNameAttribute(): string
+    {
+        return $this->attributes['last_name'].', '.$this->attributes['first_name'].' '.$this->attributes['middle_name'];
     }
 }
