@@ -40,6 +40,7 @@ class HouseholdMember extends Model
     protected $appends = [
         'is_senior',
         'household',
+        'age',
     ];
 
     public function household(): BelongsTo
@@ -58,6 +59,11 @@ class HouseholdMember extends Model
         $now = now();
 
         return $now->diffInYears($b_date);
+    }
+
+    public function getAgeAttribute(): int
+    {
+        return $this->age();
     }
 
     public function getIsSeniorAttribute(): bool

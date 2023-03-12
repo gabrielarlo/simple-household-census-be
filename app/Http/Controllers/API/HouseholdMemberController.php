@@ -16,7 +16,7 @@ class HouseholdMemberController extends Controller
     {
         $v = Validator::make($request->all(), [
             'household_id' => 'required|exists:households,id',
-        ]);
+        ])->stopOnFirstFailure(true);
         if ($v->fails()) {
             return vRes($v);
         }
@@ -40,7 +40,7 @@ class HouseholdMemberController extends Controller
             'place_of_birth' => 'required',
             'is_pwd' => 'required|boolean',
             'is_solo_parent' => 'required|boolean',
-        ]);
+        ])->stopOnFirstFailure(true);
         if ($v->fails()) {
             return vRes($v);
         }
@@ -64,7 +64,7 @@ class HouseholdMemberController extends Controller
             'place_of_birth' => 'required',
             'is_pwd' => 'required|boolean',
             'is_solo_parent' => 'required|boolean',
-        ]);
+        ])->stopOnFirstFailure(true);
         if ($v->fails()) {
             return vRes($v);
         }
@@ -79,7 +79,7 @@ class HouseholdMemberController extends Controller
     {
         $v = Validator::make($request->all(), [
             'id' => 'required|exists:household_members,id',
-        ]);
+        ])->stopOnFirstFailure(true);
         if ($v->fails()) {
             return vRes($v);
         }

@@ -4,6 +4,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\HouseholdController;
 use App\Http\Controllers\API\HouseholdMemberController;
 use App\Http\Controllers\API\StatsController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,8 +33,13 @@ Route::prefix('auth')->group(function () {
     Route::post('set-new-password', [AuthController::class, 'setNewPassword']);
 });
 
+Route::prefix('stats')->group(function () {
+    Route::get('counts', [StatsController::class, 'counts']);
+});
+
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::prefix('household')->group(function () {
+        Route::get('get-suggestions', [HouseholdController::class, 'getSuggestions']);
         Route::get('list', [HouseholdController::class, 'list']);
         Route::post('create', [HouseholdController::class, 'create']);
         Route::post('update', [HouseholdController::class, 'update']);
@@ -48,8 +54,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('stats')->group(function () {
-        Route::get('counts', [StatsController::class, 'counts']);
         Route::post('filter', [StatsController::class, 'filter']);
+    });
+
+    Route::prefix('user')->group(function () {
+        Route::get('list', [UserController::class, 'list']);
     });
 });
 

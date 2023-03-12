@@ -20,7 +20,7 @@ class AuthController extends Controller
         $v = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
             'password' => 'required',
-        ]);
+        ])->stopOnFirstFailure(true);
         if ($v->fails()) {
             return vRes($v);
         }
@@ -48,7 +48,7 @@ class AuthController extends Controller
     {
         $v = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
-        ]);
+        ])->stopOnFirstFailure(true);
         if ($v->fails()) {
             return vRes($v);
         }
@@ -67,7 +67,7 @@ class AuthController extends Controller
         $v = Validator::make($request->all(), [
             'otp' => 'required|min:6|max:6|exists:users,otp',
             'password' => 'required|min:6|confirmed',
-        ]);
+        ])->stopOnFirstFailure(true);
         if ($v->fails()) {
             return vRes($v);
         }

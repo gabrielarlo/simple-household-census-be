@@ -27,7 +27,7 @@ class StatsController extends Controller
 
         $v = Validator::make($request->all(), [
             'category' => 'required|enum:'.CategoryEnum::class,
-        ]);
+        ])->stopOnFirstFailure(true);
         if ($v->fails()) {
             return vRes($v);
         }
