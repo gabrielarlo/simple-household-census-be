@@ -8,7 +8,7 @@
    - Php version 8.1
 
 ### Installation
-- clone this repo
+- clone this repo `git clone https://github.com/gabrielarlo/simple-household-census-be.git`
 - run `cd ./simple-household-census-be`
 - run `composer install`
 - copy the `.env.example`file as `.env`
