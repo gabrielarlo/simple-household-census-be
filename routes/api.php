@@ -47,6 +47,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::prefix('household-member')->group(function () {
+        Route::get('general', [HouseholdMemberController::class, 'general']);
         Route::get('list', [HouseholdMemberController::class, 'list']);
         Route::post('add', [HouseholdMemberController::class, 'add']);
         Route::post('update', [HouseholdMemberController::class, 'update']);

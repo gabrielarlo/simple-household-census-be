@@ -15,6 +15,26 @@ use Vinkla\Hashids\Facades\Hashids;
 
 class HouseholdMemberController extends Controller
 {
+    public function general(Request $request): JsonResponse
+    {
+        $limit = $request->limit ?? 10;
+
+        $q = HouseholdMember::where('deleted_at', null);
+        if ($request->has('category')) {
+            if ($request->category == CategoryEnum::SENIOR()->value) {
+                $senior_date = now()->subYears(60);
+                $q = $q->where('birth_date', '<=', $senior_date);
+            } elseif ($request->category == CategoryEnum::PWD()->value) {
+                $q = $q->where('is_pwd', true);
+            } elseif ($request->category == CategoryEnum::SOLO()->value) {
+                $q = $q->where('is_solo_parent', true);
+            }
+        }
+        $members = $q->simplePaginate($limit);
+
+        return res($members);
+    }
+
     public function list(Request $request): JsonResponse
     {
         $v = Validator::make($request->all(), [
