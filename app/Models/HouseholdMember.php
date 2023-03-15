@@ -32,7 +32,7 @@ class HouseholdMember extends Model
         'is_lgbtqm' => 'boolean',
         'is_pwd' => 'boolean',
         'is_solo_parent' => 'boolean',
-        'birth_date' => 'date',
+        'birth_date' => 'date:Y-m-d',
         'sex' => GenderEnum::class,
         'relationship_to_head' => RelationshipEnum::class,
     ];
