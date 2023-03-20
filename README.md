@@ -17,3 +17,11 @@
 - rune `php artisan key:generate`
 - run `php artisan serve` to serve this backend
 - Then run the frontend side of the app
+
+
+### Code Updates
+- run `git pull`
+- run `composer install`
+- run `php artisan migrate` for db migration
+- run `php artisan config:cache` to save environment
+- finally run `php artisan serve`
