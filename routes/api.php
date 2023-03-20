@@ -60,6 +60,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::prefix('user')->group(function () {
         Route::get('list', [UserController::class, 'list']);
+        Route::post('update-my-account', [UserController::class, 'updateMyAccount']);
+        Route::post('change-password', [UserController::class, 'changePassword']);
+    });
+
+    Route::middleware(['admin'])->prefix('user')->group(function () {
+        Route::post('register', [UserController::class, 'register']);
+        Route::post('reset-password', [UserController::class, 'resetPassword']);
     });
 });
 
