@@ -18,10 +18,16 @@
 - run `php artisan serve` to serve this backend
 - Then run the frontend side of the app
 
-
 ### Code Updates
 - run `git pull`
 - run `composer install`
 - run `php artisan migrate` for db migration
 - run `php artisan config:cache` to save environment
 - finally run `php artisan serve`
+
+### Serve Locally or with same router
+- open the port of the host to port `8000`
+- run `php artisan serve --host 0.0.0.0`
+
+## NOTE: 
+- Backend and Frontend should run in same host/pc.
